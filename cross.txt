@@ -1,0 +1,48 @@
+1) pip install requests
+Open Visual Studio 2019→Click Create New Project
+Select ASP.NET Core Web Application→Project Name:HelloAPI
+Choose Template:API→Framework → .NET Core 3.1
+Authentication → None & Enable HTTPS ✔ & Click Create
+
+2) Add Controller
+Right-click Controllers
+Add → Controller
+Select → API Controller – Empty
+Name → HelloController
+
+HelloController.cs:
+namespace HelloAPI.Controllers
+{
+    [ApiController]
+    [Route("")]
+    public class HelloController : ControllerBase
+    {
+        [HttpGet("{name}")]
+        public string GetHello(string name)
+        {
+            return $"Hello {name} from .NET";
+        }
+    }
+}
+
+3) Run Application
+1. Click ▶ IIS Express / HelloAPI
+2. Browser opens → https://localhost:44330
+
+4) Install requests
+python -m pip install requests
+
+
+
+5) app.py: (in idle)
+import requests
+
+url = "https://localhost:5001/Prachi"
+response = requests.get(url, verify=False)
+
+print(response.text)
+
+
+6) run in cmd: python app.py
+
+7) 
