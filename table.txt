@@ -18,3 +18,19 @@ if __name__ == '__main__':
 
 #test 
 http://127.0.0.1:5000/table?num=5
+
+
+#client
+import requests
+
+url = "http://127.0.0.1:5000/table?num=5"
+
+response = requests.get(url)
+
+data = response.json()
+
+print("Multiplication Table:\n")
+for line in data:
+    print(line)
+
+#test python client.py
