@@ -1,0 +1,80 @@
+Download Tomcat 9
+Services - Servers -Add Server
+Select Apache Tomcat
+Services → Tomcat → Properties
+8080 → 8081(if port is busy)
+
+New Project
+Java with Maven → Web Application
+
+Delete wrong files
+Delete:
+JakartaEE8Resource.java
+JakartaRestConfiguration.java
+
+Create Package
+com.mycompany.mavenproject2
+
+Create Java Class
+
+Name:
+helloservice
+
+package com.mycompany.mavenproject2;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+@WebService
+public class helloservice {
+
+    @WebMethod
+    public String SayHello(String name){
+        return "Hello " + name + "!";
+    }
+}
+
+Fix pom.xml
+<dependencies>
+
+    <dependency>
+        <groupId>javax.jws</groupId>
+        <artifactId>javax.jws-api</artifactId>
+        <version>1.1</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.sun.xml.ws</groupId>
+        <artifactId>jaxws-rt</artifactId>
+        <version>2.3.3</version>
+    </dependency>
+
+</dependencies>
+
+#replace build
+<build>
+    <plugins>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.3.2</version>
+        </plugin>
+
+    </plugins>
+</build>
+
+#Also start server 
+
+http://localhost:8081/mavenproject2/helloserviceService
+http://localhost:8081/mavenproject2/helloserviceService?wsdl
