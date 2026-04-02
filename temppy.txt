@@ -1,0 +1,49 @@
+ASP.NET Web Application
+Choose:
+ Web API
+
+Add → Controller
+Choose: Web API Controller (Empty)
+Name: TempController
+
+using System.Web.Http;
+
+namespace TempService.Controllers
+{
+    public class TempController : ApiController
+    {
+        [HttpGet]
+        [Route("api/temp/c2f")]
+        public string CelsiusToFahrenheit(double c)
+        {
+            double f = (c * 9 / 5) + 32;
+            return "Fahrenheit: " + f;
+        }
+
+        [HttpGet]
+        [Route("api/temp/f2c")]
+        public string FahrenheitToCelsius(double f)
+        {
+            double c = (f - 32) * 5 / 9;
+            return "Celsius: " + c;
+        }
+    }
+}
+
+#test
+
+http://localhost:port/api/temp/c2f?c=25
+
+
+#python
+import requests
+
+url = "https://localhost:44343/api/temp/c2f?c=25"
+
+response = requests.get(url, verify=False)   
+
+print("Response from .NET Service:")
+print(response.text)
+
+
+python client.py
