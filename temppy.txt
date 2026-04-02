@@ -35,6 +35,7 @@ namespace TempService.Controllers
 http://localhost:port/api/temp/c2f?c=25
 
 
+python client.py
 #python
 import requests
 
