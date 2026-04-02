@@ -1,0 +1,73 @@
+pip install flask
+
+app.py:
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+# Home route
+@app.route("/")
+def home():
+    return "Python Web Service is running!"
+
+@app.route("/hello", methods=["GET"])
+def hello():
+    return jsonify({"message": "Hello from Python Web Service"})
+
+@app.route("/add", methods=["GET", "POST"])
+def add():
+    if request.method == "POST":
+        data = request.get_json()
+        a = data.get("a")
+        b = data.get("b")
+    else:
+        a = int(request.args.get("a"))
+        b = int(request.args.get("b"))
+
+    return jsonify({"result": a + b})
+
+@app.route("/largest", methods=["GET", "POST"])
+def largest():
+    if request.method == "POST":
+        data = request.get_json()
+        a = float(data.get("a"))
+        b = float(data.get("b"))
+        c = float(data.get("c"))
+    else:
+        a = float(request.args.get("a"))
+        b = float(request.args.get("b"))
+        c = float(request.args.get("c"))
+
+    result = max(a, b, c)
+
+    return jsonify({
+        "numbers": [a, b, c],
+        "largest": result
+    })
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
+
+run in browser:
+http://127.0.0.1:5000
+http://127.0.0.1:5000/largest?a=10&b=25&c=15
+
+
+
+client.py:
+import requests
+
+url = "http://127.0.0.1:5000/largest"
+
+data = {
+    "a": 5,
+    "b": 18,
+    "c": 11
+}
+
+response = requests.post(url, json=data)
+
+print(response.json())
