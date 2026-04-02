@@ -1,0 +1,74 @@
+Java with Maven → Web Application
+
+pom.xml
+<dependencies>
+
+    <dependency>
+        <groupId>javax.ws.rs</groupId>
+        <artifactId>javax.ws.rs-api</artifactId>
+        <version>2.1.1</version>
+        <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>org.glassfish.jersey.core</groupId>
+        <artifactId>jersey-server</artifactId>
+        <version>2.35</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.glassfish.jersey.containers</groupId>
+        <artifactId>jersey-container-servlet</artifactId>
+        <version>2.35</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.glassfish.jersey.inject</groupId>
+        <artifactId>jersey-hk2</artifactId>
+        <version>2.35</version>
+    </dependency>
+
+</dependencies>
+
+
+New → Java Package
+→ Name:
+
+com.mycompany.mavenproject2
+
+
+
+package com.mycompany.mavenproject2;
+
+#HelloService Class
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
+
+@Path("/hello")
+public class HelloService {
+
+    @GET
+    public String sayHello(@QueryParam("name") String name) {
+        
+        if (name == null || name.isEmpty()) {
+            name = "World";
+        }
+
+        return "Hello, " + name + "!";
+    }
+}
+
+#ApplicationConfig
+package com.mycompany.mavenproject2;
+
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+
+@ApplicationPath("webresources")
+public class ApplicationConfig extends Application {
+}
+
+#test
+
+http://localhost:8081/mavenproject2/webresources/hello?name=Payal
