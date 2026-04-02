@@ -1,0 +1,20 @@
+#app.py
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/table', methods=['GET'])
+def table():
+    num = int(request.args.get('num', 1))
+    
+    result = []
+    for i in range(1, 11):
+        result.append(f"{num} x {i} = {num*i}")
+    
+    return jsonify(result)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+#test 
+http://127.0.0.1:5000/table?num=5
