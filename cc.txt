@@ -1,0 +1,11 @@
+windows feature uncheck:
+Hyper-V
+Windows Hypervisor Platform
+Virtual Machine Platform
+Windows Sandbox
+
+cmd: bcdedit /set hypervisorlaunchtype off
+
+vmx file:
+vhv.enable = "TRUE"
+hypervisor.cpuid.v0 = "FALSE"
