@@ -1,0 +1,25 @@
+windows feature uncheck:
+Hyper-V
+Windows Hypervisor Platform
+Virtual Machine Platform
+Windows Sandbox
+
+cmd: bcdedit /set hypervisorlaunchtype off
+
+vmx file:
+vhv.enable = "TRUE"
+hypervisor.cpuid.v0 = "FALSE"
+
+
+prac1: VMVare ESX, VMWare ESXi 5.x iso file = hypervisor
+Open VMWare vSphere Client, create new vm & datastore, new folder=ISOFile & upload 7 ultimate
+
+prac2: linux, ubuntu x64, no. of processor=1, isofile= xenserver 6.2.0-install, 
+2nd VM: Microsoft windows, windows7 x64, bios, no. of processor=1, SAS, iso file= win7 ultimate, 
+c drive: folder= ISOLibrary & share everyone, 
+System and Security,windows firewall,Customize Settings= turnoff home network
+open zenserver: connect, create new server: CIFS & write library name & then file address.
+
+prac3: Microsoft windows 2012 & windows server 12, bios, iso file= 9600 (file), add key no.= server one (above the datacenter), GUI, custom install, change name of comp, roles & features, tick hyperV(use above code in vmx file), add .NET 3.5, restart
+tools, hyperv manager, right click on WINDOWS2012, new VM, intel r,
+download win7 ultimate file from explorer, in settings of windows2012 from right column in dvd file, iso=win7 ultimate, turn on &connect
